@@ -83,14 +83,9 @@ class MainRecommender:
 
         return model
 
-    def get_rec(self, x, N):
-        recs = self.model.similar_items(self.itemid_to_id[x], N=N)
-        top_rec = recs[1][0]
-        return self.id_to_itemid[top_rec]
-
     def get_similar_items_recommendation(self, user, N=5):
         """Рекомендуем товары, похожие на топ-N купленных юзером товаров"""
-        #res = [self.model.similar_items(self.itemid_to_id[rec[0]], N)[1][0] for rec in
+
         res = [self.id_to_itemid[rec[0]] for rec in
                self.model.recommend(userid=self.userid_to_id[user],
                                     user_items=csr_matrix(self.user_item_matrix).tocsr(),
