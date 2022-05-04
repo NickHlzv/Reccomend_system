@@ -32,8 +32,8 @@ def prefilter_items(data, take_n_popular=5000, item_features=None):
     # Заведем фиктивный item_id (если юзер покупал товары из топ-5000, то он "купил" такой товар)
     data.loc[~data['item_id'].isin(top), 'item_id'] = 999999
 
-
     return data
+
 
 def postfilter_items(user_id, recommednations):
     pass
